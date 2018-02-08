@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/abeautifulsite/simpleimage" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/alvinojutsu/yii2-image-cropper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/cropper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/fontawesome" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/gentelella" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/jcrop" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/js-cropbox" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/semantic" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/simple-ajax-uploader" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/budyaga/yii2-cropper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bupy7/yii2-widget-cropbox" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/costa-rico/yii2-images" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dpodium/yii2-widget-upload-crop" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fortawesome/font-awesome" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/imagine/imagine" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/maxmirazh33/yii2-uploadable-cropable-image" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mihaildev/yii2-ckeditor" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/navatech/yii2-cropper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/rmrevin/yii2-fontawesome" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-imagine" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiister/yii2-gentelella" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/zelenin/yii2-i18n-module" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/zelenin/yii2-semantic-ui" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
