@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class PagesController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -122,6 +122,6 @@ class PagesController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('lang', 'The requested page does not exist.'));
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

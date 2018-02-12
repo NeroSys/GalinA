@@ -13,18 +13,18 @@ use common\models\Pages;
 class PagesSearch extends Pages
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['id', 'visible', 'sort'], 'integer'],
-            [['og_url', 'seo_url', 'name', 'main_img'], 'safe'],
+            [['name', 'slug', 'url', 'og_type', 'og_img', 'og_video', 'og_locale', 'og_siteName', 'main_img'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -64,9 +64,14 @@ class PagesSearch extends Pages
             'sort' => $this->sort,
         ]);
 
-        $query->andFilterWhere(['like', 'og_url', $this->og_url])
-            ->andFilterWhere(['like', 'seo_url', $this->seo_url])
-            ->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'slug', $this->slug])
+            ->andFilterWhere(['like', 'url', $this->url])
+            ->andFilterWhere(['like', 'og_type', $this->og_type])
+            ->andFilterWhere(['like', 'og_img', $this->og_img])
+            ->andFilterWhere(['like', 'og_video', $this->og_video])
+            ->andFilterWhere(['like', 'og_locale', $this->og_locale])
+            ->andFilterWhere(['like', 'og_siteName', $this->og_siteName])
             ->andFilterWhere(['like', 'main_img', $this->main_img]);
 
         return $dataProvider;

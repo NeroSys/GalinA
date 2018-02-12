@@ -13,7 +13,7 @@ use common\models\Currency;
 class CurrencySearch extends Currency
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -24,7 +24,7 @@ class CurrencySearch extends Currency
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {

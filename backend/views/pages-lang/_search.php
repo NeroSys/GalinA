@@ -31,8 +31,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'og_title') ?>
 
-    <?php // echo $form->field($model, 'og_keywords') ?>
-
     <?php // echo $form->field($model, 'og_description') ?>
 
     <?php // echo $form->field($model, 'title_1') ?>
@@ -55,9 +53,17 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'text_5') ?>
 
+    <?php // echo $form->field($model, 'title_6') ?>
+
+    <?php // echo $form->field($model, 'text_6') ?>
+
+    <?php // echo $form->field($model, 'title_7') ?>
+
+    <?php // echo $form->field($model, 'text_7') ?>
+
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('lang', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('lang', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

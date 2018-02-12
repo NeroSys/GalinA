@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $item_id
  * @property int $currency_id
+ * @property int $lang_id
  * @property double $price
  *
  * @property Currency $currency
@@ -18,7 +19,7 @@ use Yii;
 class ProductsPrice extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -26,28 +27,30 @@ class ProductsPrice extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['item_id', 'currency_id'], 'integer'],
+            [['item_id', 'currency_id', 'lang_id'], 'integer'],
             [['price'], 'number'],
             [['currency_id'], 'exist', 'skipOnError' => true, 'targetClass' => Currency::className(), 'targetAttribute' => ['currency_id' => 'id']],
+            [['lang_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lang::className(), 'targetAttribute' => ['lang_id' => 'id']],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['item_id' => 'id']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'item_id' => Yii::t('app', 'Item ID'),
-            'currency_id' => Yii::t('app', 'Currency ID'),
-            'price' => Yii::t('app', 'Price'),
+            'item_id' => Yii::t('app', 'Товар'),
+            'currency_id' => Yii::t('app', 'Валюта'),
+            'lang_id' => Yii::t('app', 'Языковая версия сайта'),
+            'price' => Yii::t('app', 'Цена'),
         ];
     }
 

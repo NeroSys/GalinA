@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\PagesLangSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('lang', 'Pages Langs');
+$this->title = 'Pages Langs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pages-lang-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('lang', 'Create Pages Lang'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Pages Lang', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -31,20 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'lang',
             'seo_title',
             //'seo_keywords',
-            //'seo_description:ntext',
+            //'seo_description',
             //'og_title',
-            //'og_keywords',
-            //'og_description:ntext',
+            //'og_description',
             //'title_1',
-            //'text_1:ntext',
+            //'text_1',
             //'title_2',
-            //'text_2:ntext',
+            //'text_2',
             //'title_3',
-            //'text_3:ntext',
+            //'text_3',
             //'title_4',
-            //'text_4:ntext',
+            //'text_4',
             //'title_5',
-            //'text_5:ntext',
+            //'text_5',
+            //'title_6',
+            //'text_6',
+            //'title_7',
+            //'text_7',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -14,18 +14,14 @@ use Yii;
  * @property string $title
  * @property string $keywords
  * @property string $description
- * @property string $og_title
- * @property string $og_keywords
- * @property string $og_description
- * @property string $name
- * @property string $content
+ * @property string $text
  *
  * @property Products $item
  */
 class ProductsLang extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -33,20 +29,20 @@ class ProductsLang extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['item_id', 'lang_id'], 'integer'],
             [['lang'], 'string', 'max' => 50],
-            [['title', 'keywords', 'description', 'og_title', 'og_keywords', 'og_description', 'name', 'content'], 'string', 'max' => 255],
+            [['title', 'keywords', 'description', 'text'], 'string', 'max' => 255],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['item_id' => 'id']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -58,11 +54,7 @@ class ProductsLang extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'keywords' => Yii::t('app', 'Keywords'),
             'description' => Yii::t('app', 'Description'),
-            'og_title' => Yii::t('app', 'Og Title'),
-            'og_keywords' => Yii::t('app', 'Og Keywords'),
-            'og_description' => Yii::t('app', 'Og Description'),
-            'name' => Yii::t('app', 'Name'),
-            'content' => Yii::t('app', 'Content'),
+            'text' => Yii::t('app', 'Text'),
         ];
     }
 

@@ -5,12 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\ProductsLang */
 
-$this->title = Yii::t('lang', 'Update Products Lang: {nameAttribute}', [
-    'nameAttribute' => $model->title,
+$this->title = Yii::t('app', 'Update Products Lang: ' . $model->title, [
+    'nameAttribute' => '' . $model->title,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('lang', 'Products Langs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products Langs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('lang', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="products-lang-update">
 

@@ -22,36 +22,42 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'seo_keywords')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'seo_description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'seo_description')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'og_title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'og_keywords')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'og_description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'og_description')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'title_1')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text_1')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'text_1')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'title_2')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text_2')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'text_2')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'title_3')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text_3')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'text_3')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'title_4')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text_4')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'text_4')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'title_5')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text_5')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'text_5')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'title_6')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'text_6')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'title_7')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'text_7')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('lang', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -13,18 +13,18 @@ use common\models\PagesLang;
 class PagesLangSearch extends PagesLang
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['id', 'item_id', 'lang_id'], 'integer'],
-            [['lang', 'seo_title', 'seo_keywords', 'seo_description', 'og_title', 'og_keywords', 'og_description', 'title_1', 'text_1', 'title_2', 'text_2', 'title_3', 'text_3', 'title_4', 'text_4', 'title_5', 'text_5'], 'safe'],
+            [['lang', 'seo_title', 'seo_keywords', 'seo_description', 'og_title', 'og_description', 'title_1', 'text_1', 'title_2', 'text_2', 'title_3', 'text_3', 'title_4', 'text_4', 'title_5', 'text_5', 'title_6', 'text_6', 'title_7', 'text_7'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -69,7 +69,6 @@ class PagesLangSearch extends PagesLang
             ->andFilterWhere(['like', 'seo_keywords', $this->seo_keywords])
             ->andFilterWhere(['like', 'seo_description', $this->seo_description])
             ->andFilterWhere(['like', 'og_title', $this->og_title])
-            ->andFilterWhere(['like', 'og_keywords', $this->og_keywords])
             ->andFilterWhere(['like', 'og_description', $this->og_description])
             ->andFilterWhere(['like', 'title_1', $this->title_1])
             ->andFilterWhere(['like', 'text_1', $this->text_1])
@@ -80,7 +79,11 @@ class PagesLangSearch extends PagesLang
             ->andFilterWhere(['like', 'title_4', $this->title_4])
             ->andFilterWhere(['like', 'text_4', $this->text_4])
             ->andFilterWhere(['like', 'title_5', $this->title_5])
-            ->andFilterWhere(['like', 'text_5', $this->text_5]);
+            ->andFilterWhere(['like', 'text_5', $this->text_5])
+            ->andFilterWhere(['like', 'title_6', $this->title_6])
+            ->andFilterWhere(['like', 'text_6', $this->text_6])
+            ->andFilterWhere(['like', 'title_7', $this->title_7])
+            ->andFilterWhere(['like', 'text_7', $this->text_7]);
 
         return $dataProvider;
     }

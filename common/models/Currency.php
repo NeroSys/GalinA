@@ -18,7 +18,7 @@ use Yii;
 class Currency extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -26,7 +26,7 @@ class Currency extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -40,16 +40,16 @@ class Currency extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'code' => Yii::t('app', 'Code'),
-            'sign' => Yii::t('app', 'Sign'),
-            'default' => Yii::t('app', 'Default'),
+            'name' => Yii::t('app', 'Валюта'),
+            'code' => Yii::t('app', 'Код'),
+            'sign' => Yii::t('app', 'Знак'),
+            'default' => Yii::t('app', 'По умолчанию'),
         ];
     }
 

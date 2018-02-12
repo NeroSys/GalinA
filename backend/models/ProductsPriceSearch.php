@@ -13,18 +13,18 @@ use common\models\ProductsPrice;
 class ProductsPriceSearch extends ProductsPrice
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'item_id', 'currency_id'], 'integer'],
+            [['id', 'item_id', 'currency_id', 'lang_id'], 'integer'],
             [['price'], 'number'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -62,6 +62,7 @@ class ProductsPriceSearch extends ProductsPrice
             'id' => $this->id,
             'item_id' => $this->item_id,
             'currency_id' => $this->currency_id,
+            'lang_id' => $this->lang_id,
             'price' => $this->price,
         ]);
 

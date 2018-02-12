@@ -2,7 +2,11 @@
 
 /* @var $this yii\web\View */
 
-$this->title = '111';
+use frontend\widgets\MenuWidget;
+
+$this->title = '';
+
+
 ?>
 
 
@@ -437,17 +441,9 @@ $this->title = '111';
                             <h3>Категории</h3>
                         </div>
                         <div class="sidebar-contant">
-                            <ul>
-                                <li><a>Город <span>(21)</span></a></li>
-                                <li><a>Животные <span>(75)</span></a></li>
-                                <li><a>Натюрморты <span>(10)</span></a></li>
-                                <li><a>Природа <span>(18)</span></a></li>
-                                <li><a>Религия <span>(70)</span></a></li>
-                                <li><a>Люди <span>(70)</span></a></li>
-                                <li><a>Разное <span>(70)</span></a></li>
 
+                            <?= MenuWidget::widget(['tpl' => 'left']);?>
 
-                            </ul>
                         </div>
                     </div>
                     <div class="sidebar-box sidebar-item mb-40"> <span class="opener plus"></span>

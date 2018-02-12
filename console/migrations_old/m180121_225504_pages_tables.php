@@ -26,7 +26,6 @@ class m180121_225504_pages_tables extends Migration
             'seo_keywords' => $this->string()->notNull()->defaultValue(''),
             'seo_description' => $this->string()->notNull()->defaultValue(''),
             'og_title' => $this->string()->notNull()->defaultValue(''),
-            'og_keywords' => $this->string()->notNull()->defaultValue(''),
             'og_description' => $this->string()->notNull()->defaultValue(''),
             'title_1' => $this->string()->notNull()->defaultValue(''),
             'text_1' => $this->string()->notNull()->defaultValue(''),
@@ -38,15 +37,23 @@ class m180121_225504_pages_tables extends Migration
             'text_4' => $this->string()->notNull()->defaultValue(''),
             'title_5' => $this->string()->notNull()->defaultValue(''),
             'text_5' => $this->string()->notNull()->defaultValue(''),
+            'title_6' => $this->string()->notNull()->defaultValue(''),
+            'text_6' => $this->string()->notNull()->defaultValue(''),
+            'title_7' => $this->string()->notNull()->defaultValue(''),
+            'text_7' => $this->string()->notNull()->defaultValue('')
 
         ], $tableOptions);
 
 
         $this->createTable('{{%pages}}', [
             'id' => $this->primaryKey(),
-            'og_url' => $this->string(255)->notNull()->defaultValue(null),
-            'seo_url' => $this->string(255)->notNull()->defaultValue(null),
             'name' => $this->string(255)->notNull()->defaultValue(''),
+            'url' => $this->string(255)->notNull()->defaultValue(null),
+            'og_type' => $this->string(255)->notNull()->defaultValue(null),
+            'og_img' => $this->string(255)->defaultValue(null),
+            'og_video' => $this->string(255)->defaultValue(null),
+            'og_locale' => $this->string(255)->notNull()->defaultValue(null),
+            'og_siteName' => $this->string(255)->notNull()->defaultValue(null),
             'main_img' => $this->string(255)->defaultValue(null),
             'visible' => $this->smallInteger(1)->notNull()->defaultValue('1'),
             'sort' => $this->integer(11)->defaultValue(null)

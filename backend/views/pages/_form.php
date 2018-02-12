@@ -12,11 +12,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'og_url')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'seo_url')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'og_type')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'og_img')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'og_video')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'og_locale')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'og_siteName')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'main_img')->textInput(['maxlength' => true]) ?>
 
@@ -25,7 +33,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'sort')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('lang', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

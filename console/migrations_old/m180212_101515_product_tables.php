@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m180121_225437_products_tables
+ * Class m180212_101515_product_tables
  */
-class m180121_225437_products_tables extends Migration
+class m180212_101515_product_tables extends Migration
 {
 
     public function safeUp()
@@ -32,11 +32,7 @@ class m180121_225437_products_tables extends Migration
             'title' => $this->string(255)->notNull()->defaultValue(null),
             'keywords' => $this->string(255)->notNull()->defaultValue(null),
             'description' => $this->string(255)->notNull()->defaultValue(null),
-            'og_title' => $this->string()->notNull()->defaultValue(''),
-            'og_keywords' => $this->string()->notNull()->defaultValue(''),
-            'og_description' => $this->string()->notNull()->defaultValue(''),
-            'name' => $this->string(255)->notNull()->defaultValue(null),
-            'content' => $this->string(255)->notNull()->defaultValue(null),
+            'text' => $this->string(255)->notNull()->defaultValue(null),
         ], $tableOptions);
 
         $this->createTable('{{%currency}}', [
@@ -44,7 +40,7 @@ class m180121_225437_products_tables extends Migration
             'name' => $this->string(255)->notNull(),
             'code' => $this->string(50)->notNull()->defaultValue(null),
             'sign' => $this->string(11),
-            'default' => $this->integer(11),
+            'default' => $this->boolean()->defaultValue(0),
 
         ], $tableOptions);
 
@@ -52,13 +48,15 @@ class m180121_225437_products_tables extends Migration
             'id' => $this->primaryKey(),
             'category_id' => $this->integer(11)->unsigned()->defaultValue(null),
             'name' => $this->string(255)->notNull()->defaultValue(null),
-            'imageSmall' => $this->string(255)->defaultValue(null),
-            'imageLarge' => $this->string(255)->defaultValue(null),
+            'previewImg' => $this->string(255)->defaultValue(null),
+            'img' => $this->string(255)->defaultValue(null),
             'visible' => $this->smallInteger(1)->notNull()->defaultValue('1'),
+            'url' => $this->string(),
             'sort' => $this->integer(11)->unsigned()->defaultValue(null),
             'hit' => $this->boolean()->defaultValue(0),
             'new' => $this->boolean()->defaultValue(0),
             'sale' => $this->boolean()->defaultValue(0),
+            'date' => $this->dateTime(),
         ], $tableOptions);
 
 

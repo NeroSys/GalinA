@@ -5,6 +5,8 @@
  * Date: 2/8/18
  * Time: 1:25 PM
  */
+
+use frontend\widgets\MenuWidget;
 ?>
 <!-- FOOTER START -->
 <div class="footer ">
@@ -35,18 +37,7 @@
                     <div class="col-md-3 f-col">
                         <div class="footer-static-block"> <span class="opener plus"></span>
                             <h3 class="title">Категории<span></span></h3>
-                            <ul class="footer-block-contant tagcloud">
-                                <li><a>Город</a></li>
-                                <li><a>Животные</a></li>
-                                <li><a>Религия</a></li>
-                                <li><a>Котомания</a></li>
-                                <li><a>Люди</a></li>
-                                <li><a>Натюрморты</a></li>
-                                <li><a>Природа</a></li>
-                                <li><a>Разное</a></li>
-                                <li><a>Комиссионка</a></li>
-                                <li><a>Выставка</a></li>
-                            </ul>
+                            <?= MenuWidget::widget(['tpl' => 'footer']) ?>
                         </div>
                     </div>
                     <div class="col-md-3 f-col">

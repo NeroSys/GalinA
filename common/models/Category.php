@@ -13,6 +13,7 @@ use common\models\CategoryLang;
  * @property int $id
  * @property int $parent_id
  * @property string $name
+ * @property string $slug
  * @property $image_logo
  * @property string $image_small
  * @property string $image_large
@@ -71,7 +72,7 @@ class Category extends ActiveRecord
                     'og_descriptionNew',
                 ], 'safe'],
             [['image_logo'], 'file', 'extensions' => 'png, jpg, svg, jpeg'],
-            [['name', 'image_small', 'image_large'], 'string', 'max' => 255],
+            [['name', 'image_small', 'image_large', 'slug'], 'string', 'max' => 255],
         ];
     }
 
@@ -84,6 +85,7 @@ class Category extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'parent_id' => Yii::t('app', 'Родительская категория'),
             'name' => Yii::t('app', 'Название'),
+            'slug' => Yii::t('app', 'slug'),
             'image_logo' => Yii::t('app', 'Изображение Logo'),
             'image_small' => Yii::t('app', 'Изображение маленькое'),
             'image_large' => Yii::t('app', 'Изображение основное'),
@@ -105,12 +107,18 @@ class Category extends ActiveRecord
         return $this->hasMany(Products::className(), ['category_id' => 'id']);
     }
 
+    public function getCountProducts($id){
+
+        $products = Products::find()->where(['category_id' => $id])->all();
+
+        return count($products);
+
+    }
+
     public function getParent()
     {
         return $this->hasOne(Category::className(), ['id' => 'parent_id']);
     }
-
-
 
     /*
 * Возвращает массив объектов модели

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\PagesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('lang', 'Pages');
+$this->title = 'Pages';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pages-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('lang', 'Create Pages'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Pages', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,10 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'og_url:url',
-            'seo_url:url',
             'name',
-            'main_img',
+            'url:url',
+            'og_type',
+            'og_img',
+            //'og_video',
+            //'og_locale',
+            //'og_siteName',
+            //'main_img',
             //'visible',
             //'sort',
 

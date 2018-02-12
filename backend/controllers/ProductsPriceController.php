@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class ProductsPriceController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -62,16 +62,19 @@ class ProductsPriceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($item_id)
     {
         $model = new ProductsPrice();
 
+        $model->item_id = $item_id;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['products/view', 'id' => $model->item_id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'item_id' => $item_id
         ]);
     }
 
@@ -87,7 +90,7 @@ class ProductsPriceController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['products/view', 'id' => $model->item_id]);
         }
 
         return $this->render('update', [
@@ -102,11 +105,11 @@ class ProductsPriceController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $item_id)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['products/view', 'id' =>$item_id]);
     }
 
     /**
@@ -122,6 +125,6 @@ class ProductsPriceController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('lang', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

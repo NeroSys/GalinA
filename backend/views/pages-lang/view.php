@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\PagesLang */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('lang', 'Pages Langs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Pages Langs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pages-lang-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('lang', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('lang', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('lang', 'Are you sure you want to delete this item?'),
+                'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -34,20 +34,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'lang',
             'seo_title',
             'seo_keywords',
-            'seo_description:ntext',
+            'seo_description',
             'og_title',
-            'og_keywords',
-            'og_description:ntext',
+            'og_description',
             'title_1',
-            'text_1:ntext',
+            'text_1',
             'title_2',
-            'text_2:ntext',
+            'text_2',
             'title_3',
-            'text_3:ntext',
+            'text_3',
             'title_4',
-            'text_4:ntext',
+            'text_4',
             'title_5',
-            'text_5:ntext',
+            'text_5',
+            'title_6',
+            'text_6',
+            'title_7',
+            'text_7',
         ],
     ]) ?>
 

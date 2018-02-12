@@ -1,14 +1,20 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Products */
 
-$this->title = Yii::t('lang', 'Create Products');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('lang', 'Products'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Добавить товар');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Товары'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+echo Breadcrumbs::widget(['links' => [
+    ['label' => Yii::t('lang', 'Товары'), 'url' => ['index']],
+    $this->title
+]]);
 ?>
 <div class="products-create">
 
@@ -16,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'langs' => $langs
     ]) ?>
 
 </div>

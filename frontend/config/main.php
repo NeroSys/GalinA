@@ -10,6 +10,26 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'timeZone' => 'Europe/Kiev', //для правильного форматирования времени
+    'modules' => [
+        'i18n' => Zelenin\yii\modules\I18n\Module::className(),
+        'translations' => [
+            'yii' => [
+                'class' => yii\i18n\DbMessageSource::className()
+            ]
+        ],
+        'rbac' => [
+            'class' => 'common\modules\rbac\RBAC',
+        ],
+        'permit' => [
+            'class' => 'common\modules\rbac\RBAC',
+            'params' => [
+                'userClass' => 'common\models\User',
+                'accessRoles' => ['admin'],
+            ]
+        ],
+
+    ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -43,10 +63,26 @@ return [
             'showScriptName' => false,
             'class'=>'frontend\components\LangUrlManager',
             'rules'=>[
+
+                'category/<slug>' => 'category/view',
+                'search' => 'site/search',
                 '/' => 'site/index',
                 '<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
             ]
         ],
+
+        'language'=>'ru',
+        'i18n' => [
+            'class' => Zelenin\yii\modules\I18n\components\I18N::className(),
+            'languages' => ['ru', 'uk', 'en','bg'],
+            'translations' => [
+                'yii' => [
+                    'class' => yii\i18n\DbMessageSource::className()
+                ]
+            ]
+        ],
     ],
+
+
     'params' => $params,
 ];

@@ -9,13 +9,15 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use common\models\Lang;
+
 /**
  * ProductsController implements the CRUD actions for Products model.
  */
 class ProductsController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -66,12 +68,22 @@ class ProductsController extends Controller
     {
         $model = new Products();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $langs = Lang::find()->all();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+
+            $model->new = 1;
+            $model->sale = 0;
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'langs' => $langs
         ]);
     }
 
@@ -86,12 +98,15 @@ class ProductsController extends Controller
     {
         $model = $this->findModel($id);
 
+        $langs = Lang::find()->all();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'langs' => $langs
         ]);
     }
 
@@ -122,6 +137,6 @@ class ProductsController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('lang', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

@@ -5,7 +5,7 @@
  * Date: 2/8/18
  * Time: 1:25 PM
  */
-use frontend\widgets\TopMenuWidget;
+use frontend\widgets\MenuWidget;
 ?>
 
 <!-- HEADER START -->
@@ -131,7 +131,7 @@ use frontend\widgets\TopMenuWidget;
                     <div id="menu" class="navbar-collapse collapse left-side" >
                         <ul class="nav navbar-nav navbar-left">
 
-                            <?= TopMenuWidget::widget();?>
+                            <?= MenuWidget::widget(['tpl' => 'top']);?>
 
 
                         </ul>

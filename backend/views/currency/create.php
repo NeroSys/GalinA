@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Currency */
 
-$this->title = Yii::t('lang', 'Create Currency');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('lang', 'Currencies'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Currency');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Currencies'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="currency-create">

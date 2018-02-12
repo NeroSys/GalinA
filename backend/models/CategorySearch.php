@@ -19,7 +19,7 @@ class CategorySearch extends Category
     {
         return [
             [['id', 'parent_id', 'visible', 'sort'], 'integer'],
-            [['name', 'image_logo', 'image_small', 'image_large'], 'safe'],
+            [['name', 'slug', 'image_logo', 'image_small', 'image_large'], 'safe'],
         ];
     }
 
@@ -66,6 +66,7 @@ class CategorySearch extends Category
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'image_logo', $this->image_logo])
             ->andFilterWhere(['like', 'image_small', $this->image_small])
             ->andFilterWhere(['like', 'image_large', $this->image_large]);

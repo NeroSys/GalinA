@@ -13,18 +13,18 @@ use common\models\Products;
 class ProductsSearch extends Products
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['id', 'category_id', 'visible', 'sort', 'hit', 'new', 'sale'], 'integer'],
-            [['name', 'imageSmall', 'imageLarge'], 'safe'],
+            [['name', 'previewImg', 'img', 'url', 'date'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -66,11 +66,13 @@ class ProductsSearch extends Products
             'hit' => $this->hit,
             'new' => $this->new,
             'sale' => $this->sale,
+            'date' => $this->date,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'imageSmall', $this->imageSmall])
-            ->andFilterWhere(['like', 'imageLarge', $this->imageLarge]);
+            ->andFilterWhere(['like', 'previewImg', $this->previewImg])
+            ->andFilterWhere(['like', 'img', $this->img])
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }

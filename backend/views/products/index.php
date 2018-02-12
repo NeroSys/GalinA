@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('lang', 'Products');
+$this->title = Yii::t('app', 'Товары');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="products-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('lang', 'Create Products'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Добавить товар'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,13 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'category_id',
             'name',
-            'imageSmall',
-            'imageLarge',
-            //'visible',
+//            'previewImg',
+//            'img',
+            'visible:boolean',
+            //'url:url',
             //'sort',
-            //'hit',
-            //'new',
-            //'sale',
+            'hit:boolean',
+            'new:boolean',
+            'sale:boolean',
+            'date:date',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

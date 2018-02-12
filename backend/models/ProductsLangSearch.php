@@ -13,18 +13,18 @@ use common\models\ProductsLang;
 class ProductsLangSearch extends ProductsLang
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['id', 'item_id', 'lang_id'], 'integer'],
-            [['lang', 'title', 'keywords', 'description', 'og_title', 'og_keywords', 'og_description', 'name', 'content'], 'safe'],
+            [['lang', 'title', 'keywords', 'description', 'text'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -68,11 +68,7 @@ class ProductsLangSearch extends ProductsLang
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'keywords', $this->keywords])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'og_title', $this->og_title])
-            ->andFilterWhere(['like', 'og_keywords', $this->og_keywords])
-            ->andFilterWhere(['like', 'og_description', $this->og_description])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'content', $this->content]);
+            ->andFilterWhere(['like', 'text', $this->text]);
 
         return $dataProvider;
     }
