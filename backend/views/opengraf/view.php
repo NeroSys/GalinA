@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ProductsPrice */
+/* @var $model common\models\Opengraf */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products Prices'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Opengrafs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="products-price-view">
+<div class="opengraf-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,11 +29,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'item_id',
-            'currency_id',
-            'lang_id',
-            'price',
-            'oldPrice'
+            'modelName',
+            'itemId',
+            'type',
+            'img',
+            'url:url',
+            'video',
+            'audio',
+            'localeAlternative',
+            'GAuthor',
+            'GPublisher',
+            'app_id',
+            'created_at',
         ],
     ]) ?>
 

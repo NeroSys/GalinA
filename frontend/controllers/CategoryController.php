@@ -17,7 +17,7 @@ use yii\data\Pagination;
 use yii\web\HttpException;
 
 
-class CategoryController extends Controller
+class CategoryController extends AppController
 {
 
     public function actionView($slug){

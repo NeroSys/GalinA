@@ -19,7 +19,7 @@ class ProductsLangSearch extends ProductsLang
     {
         return [
             [['id', 'item_id', 'lang_id'], 'integer'],
-            [['lang', 'title', 'keywords', 'description', 'text'], 'safe'],
+            [['lang', 'title', 'description', 'text'], 'safe'],
         ];
     }
 
@@ -66,7 +66,6 @@ class ProductsLangSearch extends ProductsLang
 
         $query->andFilterWhere(['like', 'lang', $this->lang])
             ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'keywords', $this->keywords])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'text', $this->text]);
 

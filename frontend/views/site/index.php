@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use frontend\widgets\MenuWidget;
+use yii\helpers\Url;
 
 $this->title = '';
 
@@ -267,18 +268,25 @@ $this->title = '';
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="heading-part  mb-30">
-                                    <h2 class="main_title">Хиты продаж</h2>
+                                    <h2 class="main_title"><?= Yii::t('category', 'Хиты продаж') ?></h2>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="pro_cat">
                                 <div class="owl-carousel pro_cat_slider">
+                                    <?php foreach ($hits as $hit): ?>
+                                    <?php $lang_hit = $hit->getDataItems() ?>
+                                    <?php $price_hit = $hit->getPrice($hit->id, $lang_hit['lang_id'])?>
                                     <div class="item">
                                         <div class="product-item">
+                                            <?php if ($hit->sale == 1): ?>
                                             <div class="sale-label"><span>Sale</span></div>
+                                            <?php endif; ?>
+                                            <?php if ($hit->new == 1):?>
                                             <div class="new-label"><span>New</span></div>
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/1.jpg" alt=""> </a>
+                                            <?php endif;?>
+                                            <div class="product-image"> <a href="<?= Url::to(['product/view', 'id' => $hit->id])?>"> <img src="/frontend/web/images/1.jpg" alt=""> </a>
                                                 <div class="product-detail-inner">
                                                     <div class="detail-inner-left ">
                                                         <ul>
@@ -295,133 +303,13 @@ $this->title = '';
                                                 </div>
                                             </div>
                                             <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
+                                                <div class="product-item-name"> <a href="<?= Url::to(['product/view', 'id' => $hit->id])?>"><?= $lang_hit['title'] ?></a> </div>
+                                                <div class="price-box"> <span class="price"><?= $price_hit['currency_id'] ?><?= $price_hit['price'] ?></span>
+<!--                                                    <del class="price old-price">$100.00</del> </div>-->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/2.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!-- <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="sale-label"><span>Sale</span></div>
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/3.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left ">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!--  <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="new-label"><span>New</span></div>
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/4.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left ">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!--  <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/5.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!-- <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/3.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left ">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!-- <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php endforeach;?>
                                 </div>
                             </div>
                         </div>

@@ -7,6 +7,7 @@ use common\models\Products;
 use mihaildev\ckeditor\CKEditor;
 use common\models\Currency;
 
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Products */
 /* @var $form yii\widgets\ActiveForm */
@@ -21,13 +22,13 @@ use common\models\Currency;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'previewImg')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'visible')->checkbox() ?>
-
-    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'sort')->textInput() ?>
 
@@ -81,15 +82,6 @@ use common\models\Currency;
                                 <?} else {?>
                                     <?= $form->field($model,'titleNew['.$lang->id.'][]')->label('Название товара')->textInput(['maxlength' => true, 'value' => ''])?>
                                 <?}?>
-
-
-
-                                <?if(!empty($transcription)){?>
-                                    <?= $form->field($model,'keywords['.$lang->id.']['.$transcription->id .']')->label('Ключевые слова')->textInput(['maxlength' => true, 'value' => $transcription['keywords']])?>
-                                <?} else {?>
-                                    <?= $form->field($model,'keywordsNew['.$lang->id.'][]')->label('Ключевые слова')->textInput(['maxlength' => true, 'value' => ''])?>
-                                <?}?>
-
 
 
                                 <?if(!empty($transcription)){?>
@@ -156,7 +148,8 @@ use common\models\Currency;
 
 
                                 <?if(!empty($transcript)){?>
-                                        <?php $currency = Currency::find()->where(['id' => $transcript['currency_id']])->one(); ?>
+
+                                    <?php $currency = Currency::find()->where(['id' => $transcript['currency_id']])->one(); ?>
 
                                     <?= $form->field($model,'currency['.$lang->id.']['.$transcript->id .']')->label('Валюта')
                                         ->textInput(['maxlength' => true, 'value' => $transcript['currency_id']])?>

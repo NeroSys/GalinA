@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\ProductsPrice;
+use common\models\Opengraf;
 
 /**
- * ProductsPriceSearch represents the model behind the search form of `common\models\ProductsPrice`.
+ * OpengrafSearch represents the model behind the search form of `common\models\Opengraf`.
  */
-class ProductsPriceSearch extends ProductsPrice
+class OpengrafSearch extends Opengraf
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class ProductsPriceSearch extends ProductsPrice
     public function rules()
     {
         return [
-            [['id', 'item_id', 'currency_id', 'lang_id'], 'integer'],
-            [['price', 'oldPrice'], 'number'],
+            [['id', 'itemId', 'app_id', 'created_at'], 'integer'],
+            [['modelName', 'type', 'img', 'url', 'video', 'audio', 'localeAlternative', 'GAuthor', 'GPublisher'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ProductsPriceSearch extends ProductsPrice
      */
     public function search($params)
     {
-        $query = ProductsPrice::find();
+        $query = Opengraf::find();
 
         // add conditions that should always apply here
 
@@ -60,12 +60,20 @@ class ProductsPriceSearch extends ProductsPrice
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'item_id' => $this->item_id,
-            'currency_id' => $this->currency_id,
-            'lang_id' => $this->lang_id,
-            'price' => $this->price,
-            'oldPrice' => $this->oldPrice
+            'itemId' => $this->itemId,
+            'app_id' => $this->app_id,
+            'created_at' => $this->created_at,
         ]);
+
+        $query->andFilterWhere(['like', 'modelName', $this->modelName])
+            ->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'img', $this->img])
+            ->andFilterWhere(['like', 'url', $this->url])
+            ->andFilterWhere(['like', 'video', $this->video])
+            ->andFilterWhere(['like', 'audio', $this->audio])
+            ->andFilterWhere(['like', 'localeAlternative', $this->localeAlternative])
+            ->andFilterWhere(['like', 'GAuthor', $this->GAuthor])
+            ->andFilterWhere(['like', 'GPublisher', $this->GPublisher]);
 
         return $dataProvider;
     }

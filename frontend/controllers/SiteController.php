@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Products;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -16,7 +17,7 @@ use frontend\models\ContactForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends AppController
 {
     /**
      * @inheritdoc
@@ -72,7 +73,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $hits = Products::find()->where(['hit' => 1])->all();
+
+        return $this->render('index', compact('hits'));
     }
 
     /**

@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $category_id
  * @property string $name
+ * @property string $slug
  * @property string $previewImg
  * @property string $img
  * @property int $visible
@@ -29,9 +30,6 @@ class Products extends \yii\db\ActiveRecord
     public $title;
     public $titleNew;
 
-    public $keywords;
-    public $keywordsNew;
-
     public $description;
     public $descriptionNew;
 
@@ -40,6 +38,9 @@ class Products extends \yii\db\ActiveRecord
 
     public $price;
     public $priceNew;
+
+    public $oldPrice;
+    public $oldPriceNew;
 
     public $currency;
     public $currencyNew;
@@ -62,10 +63,8 @@ class Products extends \yii\db\ActiveRecord
             [['category_id', 'visible', 'sort', 'hit', 'new', 'sale'], 'integer'],
             [[
                 'title',
-                'keywords',
                 'description',
                 'titleNew',
-                'keywordsNew',
                 'descriptionNew',
 
                 'text',
@@ -73,12 +72,14 @@ class Products extends \yii\db\ActiveRecord
 
                 'price',
                 'priceNew',
+                'oldPrice',
+                'oldPriceNew',
                 'currency',
                 'currencyNew',
 
             ], 'safe'],
             [['date'], 'safe'],
-            [['name', 'previewImg', 'img', 'url'], 'string', 'max' => 255],
+            [['name', 'slug', 'previewImg', 'img', 'url'], 'string', 'max' => 255],
         ];
     }
 
@@ -91,6 +92,7 @@ class Products extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'category_id' => Yii::t('app', 'Категория'),
             'name' => Yii::t('app', 'Название'),
+            'slug' => Yii::t('app', 'Slug Ссылка'),
             'previewImg' => Yii::t('app', 'Превью'),
             'img' => Yii::t('app', 'Изображение'),
             'visible' => Yii::t('app', 'Отображение'),
@@ -157,8 +159,6 @@ class Products extends \yii\db\ActiveRecord
 
                 if(!empty($lang)){
                     $lang->title = array_pop($item);
-
-                    $lang->keywords = $this->keywords[$lang->lang_id][$key_id];
                     $lang->description = $this->description[$lang->lang_id][$key_id];
                     $lang->text = $this->text[$lang->lang_id][$key_id];
 
@@ -174,7 +174,22 @@ class Products extends \yii\db\ActiveRecord
                 $lang1 = ProductsPrice::find()->where(['lang_id' => $lang])->andWhere(['id'=>$key_id])->one();
 
                 if(!empty($lang1)){
+
+                    $item = $lang1->price;
+
                     $lang1->price = array_pop($value);
+
+                    if ($item !== $lang1->price){
+                        $lang1->oldPrice = $item;
+
+                        if ($lang1->oldPrice > $lang1->price) {
+                            $product = Products::find()->where(['id' => $this->id])->one();
+                            $product->new = 0;
+                            $product->sale = 1;
+                            $product->save();
+                        }
+
+                    }
                     $lang1->currency_id = $this->currency[$lang1->lang_id][$key_id];
                     $lang1->item_id = $this->id;
                     $lang1->lang_id = $lang;
@@ -193,8 +208,7 @@ class Products extends \yii\db\ActiveRecord
                 $lang = Lang::find()->where(['id' => $lang_id])->one()->local;
 
 
-                $itemTitle = (is_array($data) ? array_pop($data) : '');
-                $itemKeywords = (is_array($this->keywordsNew) ? array_pop($this->keywordsNew[$lang_id]) : '');
+                $itemTitle = (is_array($data) ? array_pop($data) : '');;
                 $itemDescription = (is_array($this->descriptionNew) ? array_pop($this->descriptionNew[$lang_id]) : '');
                 $itemText = (is_array($this->textNew) ? array_pop($this->textNew[$lang_id]) : '');
 
@@ -206,7 +220,6 @@ class Products extends \yii\db\ActiveRecord
                 $item->item_id = $this->id;
 
                 $item->title = (!empty($itemTitle) ? $itemTitle : '');
-                $item->keywords = (!empty($itemKeywords) ? $itemKeywords : '');
                 $item->description = (!empty($itemDescription) ? $itemDescription : '');
                 $item->text = (!empty($itemText) ? $itemText : '');
 
@@ -251,4 +264,5 @@ class Products extends \yii\db\ActiveRecord
 
         return Products::find()->where(['id' => $id])->one();
     }
+
 }
