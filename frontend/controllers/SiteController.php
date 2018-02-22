@@ -75,7 +75,11 @@ class SiteController extends AppController
     {
         $hits = Products::find()->where(['hit' => 1])->all();
 
-        return $this->render('index', compact('hits'));
+        $new = Products::find()->where(['new' => 1])->all();
+
+        $sales = Products::find()->where(['sale' => 1])->limit(3)->all();
+
+        return $this->render('index', compact('hits', 'new', 'sales'));
     }
 
     /**

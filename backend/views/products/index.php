@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ProductsSearch */
@@ -9,6 +10,12 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', 'Товары');
 $this->params['breadcrumbs'][] = $this->title;
+
+
+echo Breadcrumbs::widget(['links' => [
+    $this->title
+]]);
+
 ?>
 <div class="products-index">
 
@@ -23,10 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'category_id',
+            [
+                'attribute' => 'category_id',
+                'value' => function ($data){
+
+                    return $data->category->name;
+
+                }
+            ],
             'name',
 //            'previewImg',
 //            'img',

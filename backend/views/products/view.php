@@ -4,13 +4,16 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
+use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Products */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+echo Breadcrumbs::widget(['links' => [
+    ['label' => Yii::t('lang', 'Товары'), 'url' => ['index']],
+    $this->title
+]]);
 ?>
 <div class="products-view">
 

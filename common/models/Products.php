@@ -121,6 +121,10 @@ class Products extends \yii\db\ActiveRecord
         return $this->hasMany(ProductsPrice::className(), ['item_id' => 'id']);
     }
 
+    public function getCategory(){
+
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
 
     /*
 * Возвращает массив объектов модели
@@ -265,4 +269,18 @@ class Products extends \yii\db\ActiveRecord
         return Products::find()->where(['id' => $id])->one();
     }
 
+    public function getCurrName($id){
+
+        $currency = Currency::find()->where(['id' => $id])->one();
+
+        if (empty($currency)){
+            return 'USD';
+        }
+        return $currency->name;
+    }
+
+    public function getOldPrice($id){
+
+
+    }
 }

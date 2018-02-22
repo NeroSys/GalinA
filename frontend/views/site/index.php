@@ -89,161 +89,57 @@ $this->title = '';
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="heading-part mb-30">
-                                    <h2 class="main_title">Новинки</h2>
+                                    <h2 class="main_title"><?= Yii::t('category', 'Новинки') ?></h2>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="pro_cat">
                                 <div class="owl-carousel pro_cat_slider">
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="sale-label"><span>Sale</span></div>
-                                            <div class="new-label"><span>New</span></div>
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/1.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left ">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Купить"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon active"><a href="#"></a></li>
-                                                            <!-- <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
+                                    <?php foreach ($new as $item): ?>
+                                        <?php $lang_item = $item->getDataItems() ?>
+                                        <?php $price_item = $item->getPrice($item->id, $lang_item['lang_id'])?>
+                                        <div class="item">
+                                            <div class="product-item">
+                                                <?php if ($item->sale == 1): ?>
+                                                    <div class="sale-label"><span>Sale</span></div>
+                                                <?php endif; ?>
+                                                <?php if ($item->new == 1):?>
+                                                    <div class="new-label"><span>New</span></div>
+                                                <?php endif;?>
+                                                <div class="product-image">
+                                                    <a href="<?= Url::to(['product/view', 'id' => $item->id])?>">
+                                                        <img src="/frontend/web/images/b.jpg" alt="">
+                                                    </a>
+                                                    <div class="product-detail-inner">
+                                                        <div class="detail-inner-left ">
+                                                            <ul>
+                                                                <li class="pro-cart-icon">
+                                                                    <form>
+                                                                        <button title="Add to Cart"></button>
+                                                                    </form>
+                                                                </li>
+                                                                <li class="pro-wishlist-icon active"><a href="#"></a></li>
+                                                                <!-- <li class="pro-compare-icon"><a href="#"></a></li> -->
+                                                                <li class="pro-rating-icon"><a href="#"></a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/2.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left ">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!--  <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
+                                                <div class="product-item-details">
+                                                    <?php $currency = $item->getCurrName($price_item['currency_id']) ?>
+                                                    <div class="product-item-name">
+                                                        <a href="<?= Url::to(['product/view', 'id' => $item->id])?>"><?= $lang_item['title'] ?></a>
                                                     </div>
+                                                    <div class="price-box"> <span class="price"><?= $currency ?> <?= $price_item['price'] ?></span>
+
+                                                        <?php if (!empty($price_item['oldPrice'])): ?>
+                                                        <del class="price old-price"><?= $currency ?> <?= $price_item['oldPrice']?></del> </div>
+                                                <?php endif; ?>
                                                 </div>
                                             </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="sale-label"><span>Sale</span></div>
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/3.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!-- <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="new-label"><span>New</span></div>
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/4.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left ">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!--  <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/5.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left ">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!-- <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-item">
-                                            <div class="product-image"> <a href="product-page.html"> <img src="/frontend/web/images/3.jpg" alt=""> </a>
-                                                <div class="product-detail-inner">
-                                                    <div class="detail-inner-left ">
-                                                        <ul>
-                                                            <li class="pro-cart-icon">
-                                                                <form>
-                                                                    <button title="Add to Cart"></button>
-                                                                </form>
-                                                            </li>
-                                                            <li class="pro-wishlist-icon"><a href="#"></a></li>
-                                                            <!-- <li class="pro-compare-icon"><a href="#"></a></li> -->
-                                                            <li class="pro-rating-icon"><a href="#"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                                <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$100.00</del> </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php endforeach;?>
                                 </div>
                             </div>
                         </div>
@@ -286,7 +182,7 @@ $this->title = '';
                                             <?php if ($hit->new == 1):?>
                                             <div class="new-label"><span>New</span></div>
                                             <?php endif;?>
-                                            <div class="product-image"> <a href="<?= Url::to(['product/view', 'id' => $hit->id])?>"> <img src="/frontend/web/images/1.jpg" alt=""> </a>
+                                            <div class="product-image"> <a href="<?= Url::to(['product/view', 'id' => $hit->id])?>"> <img src="/frontend/web/images/b.jpg" alt=""> </a>
                                                 <div class="product-detail-inner">
                                                     <div class="detail-inner-left ">
                                                         <ul>
@@ -303,9 +199,15 @@ $this->title = '';
                                                 </div>
                                             </div>
                                             <div class="product-item-details">
-                                                <div class="product-item-name"> <a href="<?= Url::to(['product/view', 'id' => $hit->id])?>"><?= $lang_hit['title'] ?></a> </div>
-                                                <div class="price-box"> <span class="price"><?= $price_hit['currency_id'] ?><?= $price_hit['price'] ?></span>
-<!--                                                    <del class="price old-price">$100.00</del> </div>-->
+                                                <?php $currency = $hit->getCurrName($price_hit['currency_id']) ?>
+                                                <div class="product-item-name">
+                                                    <a href="<?= Url::to(['product/view', 'id' => $hit->id])?>"><?= $lang_hit['title'] ?></a>
+                                                </div>
+                                                <div class="price-box"> <span class="price"><?= $currency ?> <?= $price_hit['price'] ?></span>
+
+                                                    <?php if (!empty($price_hit['oldPrice'])): ?>
+                                                    <del class="price old-price"><?= $currency ?> <?= $price_hit['oldPrice']?></del> </div>
+                                                    <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -336,47 +238,25 @@ $this->title = '';
                     </div>
                     <div class="sidebar-box sidebar-item mb-40"> <span class="opener plus"></span>
                         <div class="sidebar-title">
-                            <h3>Распродажа</h3>
+                            <h3><?= Yii::t('category', 'Распродажа') ?></h3>
                         </div>
                         <div class="sidebar-contant">
                             <ul>
-                                <li>
-                                    <div class="pro-media"> <a><img alt="T-shirt" src="/frontend/web/images/1.jpg"></a> </div>
-                                    <div class="pro-detail-info"> <a>Black African Print</a>
-                                        <!-- <div class="rating-summary-block">
-                                            <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
-                                        </div> -->
-                                        <div class="price-box"> <span class="price">$80.00</span> </div>
-                                        <div class="cart-link">
-                                            <form>
-                                                <button title="Add to Cart">Add To Cart</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="pro-media"> <a><img alt="T-shirt" src="/frontend/web/images/6.jpg"></a> </div>
-                                    <div class="pro-detail-info"> <a>Black African Print</a>
-                                        <!-- <div class="rating-summary-block">
-                                            <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
-                                        </div> -->
-                                        <div class="price-box"> <span class="price">$80.00</span> </div>
-                                        <div class="cart-link">
-                                            <form>
-                                                <button title="Add to Cart">Add To Cart</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
+                                <?php foreach ($sales as $sale): ?>
+                                <?php $lang_sale = $sale->getDataItems() ?>
+                                    <?php $price_sale = $sale->getPrice($sale->id, $lang_sale['lang_id'])?>
                                 <li>
                                     <div class="pro-media">
-                                        <a><img alt="T-shirt" src="/frontend/web/images/8.jpg"></a>
+                                        <a href="<?= Url::to(['product/view', 'id' => $sale->id]) ?>">
+                                            <img alt="T-shirt" src="/frontend/web/images/b.jpg">
+                                        </a>
                                     </div>
-                                    <div class="pro-detail-info"> <a>Black African Print</a>
+                                    <div class="pro-detail-info"> <a href="<?= Url::to(['product/view', 'id' => $sale->id]) ?>"><?= $lang_sale['title'] ?></a>
                                         <!-- <div class="rating-summary-block">
-                                          <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
+                                            <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
                                         </div> -->
-                                        <div class="price-box"> <span class="price">$80.00</span> </div>
+                                        <?php $currency = $sale->getCurrName($price_sale['currency_id']) ?>
+                                        <div class="price-box"> <span class="price"><?= $currency ?> <?= $price_sale['price'] ?></span> </div>
                                         <div class="cart-link">
                                             <form>
                                                 <button title="Add to Cart">Add To Cart</button>
@@ -384,6 +264,7 @@ $this->title = '';
                                         </div>
                                     </div>
                                 </li>
+                                <?php endforeach;?>
                             </ul>
                         </div>
                     </div>
