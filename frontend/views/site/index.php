@@ -134,9 +134,11 @@ $this->title = '';
                                                     </div>
                                                     <div class="price-box"> <span class="price"><?= $currency ?> <?= $price_item['price'] ?></span>
 
-                                                        <?php if (!empty($price_item['oldPrice'])): ?>
-                                                        <del class="price old-price"><?= $currency ?> <?= $price_item['oldPrice']?></del> </div>
-                                                <?php endif; ?>
+                                                <?php if (!empty($price_item['oldPrice']) && $price_item['price'] < $price_item['oldPrice']){ ?>
+                                                        <del class="price old-price"><?= $currency ?> <?= $price_item['oldPrice']?></del>
+                                                <?}?>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -208,9 +210,11 @@ $this->title = '';
                                                 </div>
                                                 <div class="price-box"> <span class="price"><?= $currency ?> <?= $price_hit['price'] ?></span>
 
-                                                    <?php if (!empty($price_hit['oldPrice'])): ?>
-                                                    <del class="price old-price"><?= $currency ?> <?= $price_hit['oldPrice']?></del> </div>
+                                                    <?php if (!empty($price_hit['oldPrice']) && $price_hit['price'] < $price_hit['oldPrice']): ?>
+                                                    <del class="price old-price"><?= $currency ?> <?= $price_hit['oldPrice']?></del>
                                                     <?php endif; ?>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
