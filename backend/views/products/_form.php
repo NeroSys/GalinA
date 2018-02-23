@@ -18,36 +18,51 @@ use common\models\Currency;
     <?php $form = ActiveForm::begin(); ?>
 
 
-    <?= $form->field($model, 'category_id')->dropDownList(Category::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' => '']) ?>
+    <div class="col-md-4">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= Yii::t('app', 'Основные') ?> <small><?= Yii::t('app', 'данные') ?></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <?= $form->field($model, 'category_id')->dropDownList(Category::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'previewImg')->textInput(['maxlength' => true]) ?>
+<!--                --><?//= $form->field($model, 'previewImg')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'visible')->checkbox() ?>
+                <?= $form->field($model, 'sort')->textInput() ?>
 
-    <?= $form->field($model, 'sort')->textInput() ?>
+                <?= $form->field($model, 'visible')->checkbox() ?>
 
-    <?= $form->field($model, 'hit')->checkbox() ?>
+                <?= $form->field($model, 'hit')->checkbox() ?>
 
-    <?php if (!$model->isNewRecord): ?>
+                <?php if (!$model->isNewRecord): ?>
 
-    <?= $form->field($model, 'new')->checkbox() ?>
+                    <?= $form->field($model, 'new')->checkbox() ?>
 
-    <?= $form->field($model, 'sale')->checkbox() ?>
+                    <?= $form->field($model, 'sale')->checkbox() ?>
 
-    <?php endif;?>
+                <?php endif;?>
 
-<!--    --><?//= $form->field($model, 'date')->textInput() ?>
+                <!--    --><?//= $form->field($model, 'date')->textInput() ?>
+
+            </div>
+        </div>
+    </div>
 
 
-    <h3><?= Yii::t('app', 'Редактирование переводов')?></h3>
 
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="x_panel">
             <div class="x_title">
                 <h2><?= Yii::t('app', 'Переводы') ?> <small><?= Yii::t('app', 'контента') ?></small></h2>
@@ -83,19 +98,39 @@ use common\models\Currency;
                                     <?= $form->field($model,'titleNew['.$lang->id.'][]')->label('Название товара')->textInput(['maxlength' => true, 'value' => ''])?>
                                 <?}?>
 
+                                    <?if(!empty($transcription)){?>
+                                        <?= $form->field($model, 'description['.$lang->id.']['.$transcription->id .']')->widget(CKEditor::className(), [
+                                            'options' => [
+                                                'row' => 2,
+                                                'value' => $transcription['description']],
+                                        ])->label(Yii::t('app','Краткое описание'))?>
+
+                                    <?} else {?>
+
+                                        <?= $form->field($model, 'descriptionNew['.$lang->id.'][]')->widget(CKEditor::className(), [
+                                            'options' => [
+                                                'row' => 2,
+                                                'value' => ''],
+                                        ])->label(Yii::t('app','Краткое описание'))?>
+
+                                    <?}?>
+
 
                                 <?if(!empty($transcription)){?>
-                                    <?= $form->field($model,'description['.$lang->id.']['.$transcription->id .']')->label('Краткое описание')->textInput(['maxlength' => true, 'value' => $transcription['description']])?>
+                                    <?= $form->field($model, 'text['.$lang->id.']['.$transcription->id .']')->widget(CKEditor::className(), [
+                                        'options' => [
+                                            'row' => 2,
+                                            'value' => $transcription['text']],
+                                    ])->label(Yii::t('app','Основной текст'))?>
+
                                 <?} else {?>
-                                    <?= $form->field($model,'descriptionNew['.$lang->id.'][]')->label('Краткое описание')->textInput(['maxlength' => true, 'value' => ''])?>
-                                <?}?>
 
+                                    <?= $form->field($model, 'textNew['.$lang->id.'][]')->widget(CKEditor::className(), [
+                                        'options' => [
+                                            'row' => 2,
+                                            'value' => ''],
+                                    ])->label(Yii::t('app','Основной текст'))?>
 
-
-                                <?if(!empty($transcription)){?>
-                                    <?= $form->field($model,'text['.$lang->id.']['.$transcription->id .']')->label('Текст')->textInput(['maxlength' => true, 'value' => $transcription['text']])?>
-                                <?} else {?>
-                                    <?= $form->field($model,'textNew['.$lang->id.'][]')->label('Текст')->textInput(['maxlength' => true, 'value' => ''])?>
                                 <?}?>
                             </div>
                         <?php endforeach; ?>
@@ -105,12 +140,11 @@ use common\models\Currency;
         </div>
     </div>
 
-    <h3><?= Yii::t('app', 'Цена товара для разных стран')?></h3>
 
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="x_panel">
             <div class="x_title">
-                <h2><?= Yii::t('app', 'Стоимость') ?> <small><?= Yii::t('app', 'в зависимости от региона') ?></small></h2>
+                <h2><?= Yii::t('app', 'Стоимость') ?> <small><?= Yii::t('app', 'по странам') ?></small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -125,7 +159,6 @@ use common\models\Currency;
 
                             <li role="presentation" class="">
                                 <a href="#<?= $lang->name?>1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
-                                    <?= Yii::t('app', 'Версия сайта на языке: ') ?>
                                     <?= $lang->name?>
                                 </a>
                             </li>
@@ -166,11 +199,11 @@ use common\models\Currency;
     </div>
 
 
-
+    <div class="clearfix"></div>
 
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

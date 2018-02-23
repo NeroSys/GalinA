@@ -65,6 +65,7 @@ return [
             'rules'=>[
 
                 'category/<slug>' => 'category/view',
+                'product/<slug>' => 'product/view',
                 'search' => 'site/search',
                 '/' => 'site/index',
                 '<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',

@@ -29,7 +29,7 @@ use mihaildev\ckeditor\CKEditor;
     ])->label(Yii::t('app','Основное описание'))?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -3,10 +3,12 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
+use common\models\Currency;
+use yii\helpers\ArrayHelper;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ProductsLang */
+/* @var $model common\models\ProductsPrice */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -17,19 +19,10 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'lang_id')->dropDownList($model->getArray($item_id))->label('Языковая версия сайта') ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true])->label('Название товара') ?>
+    <?= $form->field($model, 'currency_id')->dropDownList(  ArrayHelper::map(Currency::find()->asArray()->all(),'id', 'name'),
+        ['prompt' => 'Выберите валюту']) ?>
 
-    <?= $form->field($model, 'description')->widget(CKEditor::className(), [
-        'options' => [
-            'row' => 4
-        ],
-    ])->label(Yii::t('app','Текст превью'))?>
-
-    <?= $form->field($model, 'text')->widget(CKEditor::className(), [
-        'options' => [
-            'row' => 4
-        ],
-    ])->label(Yii::t('app','Основное описание'))?>
+    <?= $form->field($model, 'price')->textInput() ?>
 
 
     <div class="form-group">

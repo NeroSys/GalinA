@@ -20,15 +20,12 @@ echo Breadcrumbs::widget(['links' => [
     <div class="row">
 
         <div class="col-md-6 col-sm-6 col-xs-12">
-
-
-
-
             <div class="x_panel">
                 <div class="x_title">
-                    <h2><?= Html::encode($this->title) ?> <small>
-                        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                    <h2><?= Html::encode($this->title) ?></h2>
+                    <h2><small>
+                        <?= Html::a(Yii::t('app', 'Обновить'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                        <?= Html::a(Yii::t('app', 'Удалить'), ['delete', 'id' => $model->id], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
@@ -146,7 +143,7 @@ echo Breadcrumbs::widget(['links' => [
                                 ]); ?>
 
                                     <p>
-                                        <?= Html::a(Yii::t('app', 'Добавить перевод'), ['/products-price/create', 'item_id' => $model->id],
+                                        <?= Html::a(Yii::t('app', 'Добавить перевод'), ['/products-lang/create', 'item_id' => $model->id],
                                             ['class' => 'btn btn-lg btn-primary btn-block'])?>
                                     </p>
 
