@@ -292,4 +292,23 @@ class Category extends ActiveRecord
         return ($this->image_logo) ?  '/frontend/web/upload/category/' . $this->image_logo : '/frontend/web/no-image.jpg';
     }
 
+
+//    Open graph
+
+    public function getOpenGraph(){
+
+        return $this->hasOne(Opengraf::className(), ['itemId' => 'id'])->andWhere(['modelName' => $this::className()]);
+    }
+
+    public function getOGItem($id){
+
+        return Opengraf::find()->where(['modelName' => $this::className()])->andWhere(['itemId' => $id])->one();
+    }
+
+    public function getSEO($id){
+
+        return Opengraf::find()->where(['modelName' => $this::className()])->andWhere(['itemId' => $id])->one();
+    }
+
+// End Open Graph
 }

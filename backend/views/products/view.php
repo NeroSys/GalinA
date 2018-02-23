@@ -151,6 +151,85 @@ echo Breadcrumbs::widget(['links' => [
                         </div>
                     </div>
 
+                    <!--SEO && OG -->
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2><?= Yii::t('app', 'SEO && OG')?> <small></small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+
+                            <?php
+
+                            $tags = $model->getOGItem($model->id);
+
+                            if (!empty($tags)) {
+
+// get SEO and title, keywords, description on default language == Russian
+                                $seo = $model->getSEO($model->id);
+                                $lang_seo = $seo->getDataItemsAdmin();?>
+                                <div class="dashboard-widget-content">
+
+                                    <ul class="list-unstyled timeline widget">
+                                        <li>
+                                            <div class="block">
+                                                <div class="block_content">
+                                                    <h2 class="title">
+                                                        <a>Title</a>
+                                                    </h2>
+                                                    <div class="byline">
+                                                        <span>Default language</span> is <a>Russian</a>
+                                                    </div>
+                                                    <p class="excerpt"><?= $lang_seo['title'] ?></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="block">
+                                                <div class="block_content">
+                                                    <h2 class="title">
+                                                        <a>Keywords</a>
+                                                    </h2>
+                                                    <div class="byline">
+                                                        <span>Default language</span> is <a>Russian</a>
+                                                    </div>
+                                                    <p class="excerpt"><?= $lang_seo['keywords'] ?></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="block">
+                                                <div class="block_content">
+                                                    <h2 class="title">
+                                                        <a>Description</a>
+                                                    </h2>
+                                                    <div class="byline">
+                                                        <span>Default language</span> is <a>Russian</a>
+                                                    </div>
+                                                    <p class="excerpt"><?= $lang_seo['description'] ?></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            <?php }else {
+
+                                $controller = \Yii::$app->controller->id;
+
+                                echo Html::a('Создать OG тэги', [
+                                    'opengraf/create',
+                                    'itemId' => $model->id,
+                                    'modelName' => $model::className(),
+                                    'controller' => $controller
+                                ], ['class' => 'btn btn-lg btn-primary btn-block']);
+                            }?>
+
+                        </div>
+                    </div>
+                    <!--            end SEO && OG -->
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@ class AppController extends Controller
         $ogDescription = null,
         $ogVideo = null,
         $ogLocale = null,
-        $ogSiteName = 'InJazz | MusicMarket',
+        $ogSiteName = "Galin-A | Cross stitches magic",
         $ogLocaleAlternative = null,
         $GAuthor = null,
         $GPublisher = null,

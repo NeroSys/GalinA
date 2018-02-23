@@ -2,6 +2,8 @@
 namespace frontend\controllers;
 
 use common\models\Products;
+use common\models\Pages;
+
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -13,6 +15,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+
 
 /**
  * Site controller
@@ -78,6 +81,41 @@ class SiteController extends AppController
         $new = Products::find()->where(['new' => 1])->all();
 
         $sales = Products::find()->where(['sale' => 1])->limit(3)->all();
+
+        $page = Pages::find()->where(['slug' => 'main'])->one();
+
+        if (!empty($page)){
+            $name = $page->getSEO($page->id);
+        }
+
+        if(!empty($name)) {
+
+            $lang_name = $name->getDataItems();
+
+
+            $this->setMeta(
+                $lang_name['title'],
+                $lang_name['keywords'],
+                $lang_name['description'],
+                $lang_name['title'],
+                $name->type,
+                $name->img,
+                $name->url,
+                true,
+                true,
+                $lang_name['description'],
+                $name->video,
+                \Yii::$app->language,
+                true,
+                $name->localeAlternative,
+                $name->GAuthor,
+                $name->GPublisher,
+                $name->app_id
+
+            );
+        }else{
+            $this->setMeta('Galin-A | Магия крестиков');
+        }
 
         return $this->render('index', compact('hits', 'new', 'sales'));
     }

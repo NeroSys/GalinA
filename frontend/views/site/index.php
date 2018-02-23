@@ -5,11 +5,7 @@
 use frontend\widgets\MenuWidget;
 use yii\helpers\Url;
 
-$this->title = '';
-
-
 ?>
-
 
 <!--  Site Services Features Block Start  -->
 <section class=" services-icon ">

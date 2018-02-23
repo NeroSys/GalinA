@@ -279,8 +279,24 @@ class Products extends \yii\db\ActiveRecord
         return $currency->name;
     }
 
-    public function getOldPrice($id){
 
 
+//    Open graph
+
+    public function getOpenGraph(){
+
+        return $this->hasOne(Opengraf::className(), ['itemId' => 'id'])->andWhere(['modelName' => $this::className()]);
     }
+
+    public function getOGItem($id){
+
+        return Opengraf::find()->where(['modelName' => $this::className()])->andWhere(['itemId' => $id])->one();
+    }
+
+    public function getSEO($id){
+
+        return Opengraf::find()->where(['modelName' => $this::className()])->andWhere(['itemId' => $id])->one();
+    }
+
+// End Open Graph
 }
