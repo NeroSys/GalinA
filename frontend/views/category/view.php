@@ -76,17 +76,24 @@ use yii\helpers\Html;
                     <div class="sidebar-box mb-40 visible-md visible-lg"> <a href="#"> <img src="/frontend/web/images/left-banner.jpg" alt="ambar"> </a> </div>
                     <div class="sidebar-box sidebar-item"> <span class="opener plus"></span>
                         <div class="sidebar-title">
-                            <h3>Best Seller</h3>
+                            <h3><?= Yii::t('category', 'Топы продаж') ?></h3>
                         </div>
                         <div class="sidebar-contant">
                             <ul>
+                                <?php if(!empty($tops)){?>
+                                <?php foreach($tops as $top): ?>
+                                        <?php $lang_top = $top->getDataItems() ?>
+                                        <?php $price_top = $top->getPrice($top->id) ?>
                                 <li>
-                                    <div class="pro-media"> <a><img alt="T-shirt" src="/frontend/web/images/1.jpg"></a> </div>
-                                    <div class="pro-detail-info"> <a>Black African Print</a>
+                                    <div class="pro-media"> <a href="<?= Url::to(['product/view', 'slug' => $top->slug])?>">
+                                            <?= Html::img("@web/images/{$top->img}", ['alt' => $top->name]) ?>
+                                        </a>
+                                    </div>
+                                    <div class="pro-detail-info"> <a href="<?= Url::to(['product/view', 'slug' => $top->slug])?>"><?= $lang_top['title'] ?></a>
                                         <div class="rating-summary-block">
                                             <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
                                         </div>
-                                        <div class="price-box"> <span class="price">$80.00</span> </div>
+                                        <div class="price-box"> <span class="price"><?= $currency->sign ?><?= $price_top['price'] ?></span> </div>
                                         <div class="cart-link">
                                             <form>
                                                 <button title="Add to Cart">Add To Cart</button>
@@ -94,34 +101,8 @@ use yii\helpers\Html;
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="pro-media"> <a><img alt="T-shirt" src="/frontend/web/images/2.jpg"></a> </div>
-                                    <div class="pro-detail-info"> <a>Black African Print</a>
-                                        <div class="rating-summary-block">
-                                            <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
-                                        </div>
-                                        <div class="price-box"> <span class="price">$80.00</span> </div>
-                                        <div class="cart-link">
-                                            <form>
-                                                <button title="Add to Cart">Add To Cart</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="pro-media"> <a><img alt="T-shirt" src="/frontend/web/images/3.jpg"></a> </div>
-                                    <div class="pro-detail-info"> <a>Black African Print</a>
-                                        <div class="rating-summary-block">
-                                            <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
-                                        </div>
-                                        <div class="price-box"> <span class="price">$80.00</span> </div>
-                                        <div class="cart-link">
-                                            <form>
-                                                <button title="Add to Cart">Add To Cart</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
+                                <?php endforeach ?>
+                                <?}?>
                             </ul>
                         </div>
                     </div>
@@ -172,7 +153,7 @@ use yii\helpers\Html;
                         <?php if(!empty($products)): ?>
                         <?php $i= 0; foreach ($products as $product): ?>
                         <?php $lang_product = $product->getDataItems() ?>
-                        <?php $price_product = $product->getPrice($product->id, $lang_product['lang_id']) ?>
+                        <?php $price_product = $product->getPrice($product->id) ?>
                         <div class="col-md-3 col-sm-4 col-xs-6">
                             <div class="product-item">
                                 <?php if ($product->sale == 1): ?>
@@ -206,12 +187,10 @@ use yii\helpers\Html;
                                             <?= $lang_product['title'] ?>
                                         </a>
                                     </div>
-                                    <?php $currency = $product->getCurrName($price_product['currency_id']) ?>
-
                                     <div class="price-box">
-                                        <span class="price"><?= $currency ?> <?= $price_product['price'] ?></span>
-                                        <?php if (!empty($price_product['oldPrice'])){ ?>
-                                        <del class="price old-price"><?= $currency ?> <?= $price_product['oldPrice']?></del>
+                                        <span class="price"><?= $currency->sign ?> <?= $price_product['price'] ?></span>
+                                        <?php if (!empty($price_product['oldPrice']) && $price_product['price'] < $price_product['oldPrice']){ ?>
+                                        <del class="price old-price"><?= $currency->sign ?> <?= $price_product['oldPrice']?></del>
                                         <?}?>
                                     </div>
 

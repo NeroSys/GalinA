@@ -5,7 +5,12 @@
  * Date: 2/8/18
  * Time: 1:25 PM
  */
+
+use yii\helpers\Url;
+use yii\helpers\Html;
+
 use frontend\widgets\MenuWidget;
+use frontend\widgets\LangWidget;
 ?>
 
 <!-- HEADER START -->
@@ -17,21 +22,16 @@ use frontend\widgets\MenuWidget;
                     <div class="col-sm-5">
                         <div class="top-link top-link-left">
                             <ul>
-                                <li class="language-icon">
-                                    <select>
-                                        <option selected="selected" value="">En</option>
-                                        <option value="">Ru</option>
+                                <?= LangWidget::widget() ?>
 
-                                    </select>
-                                </li>
-                                <li class="sitemap-icon">
-                                    <select>
-                                        <option selected="selected" value="">EUR</option>
-                                        <option value="">USD</option>
-                                        <option value="">RUR</option>
-                                    </select>
-                                </li>
-                                <li class="welcome-msg"> Магия крестиков! </li>
+<!--                                <li class="sitemap-icon">-->
+<!--                                    <select>-->
+<!--                                        <option selected="selected" value="">EUR</option>-->
+<!--                                        <option value="">USD</option>-->
+<!--                                        <option value="">RUR</option>-->
+<!--                                    </select>-->
+<!--                                </li>-->
+                                <li class="welcome-msg"> <?= Yii::t('main', 'Магия крестиков!') ?> </li>
                             </ul>
                         </div>
                     </div>
@@ -55,20 +55,6 @@ use frontend\widgets\MenuWidget;
                                                 <ul>
                                                     <li><a href="login.html">Sign In</a></li>
                                                     <li><a href="register.html">Create an Account</a></li>
-                                                </ul>
-                                            </li>
-                                            <li> <span class="dropdown-title">Language :</span>
-                                                <ul>
-                                                    <li><a class="active" href="#">English</a></li>
-                                                    <li><a href="#">French</a></li>
-                                                    <li><a href="#">German</a></li>
-                                                </ul>
-                                            </li>
-                                            <li> <span class="dropdown-title">Currency :</span>
-                                                <ul>
-                                                    <li><a class="active" href="#">USD</a></li>
-
-                                                    <li><a href="#">EUR</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -126,7 +112,9 @@ use frontend\widgets\MenuWidget;
             <div class="header-inner">
                 <div class="navbar-header">
                     <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"><i class="fa fa-bars"></i></button>
-                    <a href="index.html"> <img alt="Galin-A" src="/frontend/web/images/logo.png"></a> </div>
+                    <a href="<?= Url::to(['site/index']) ?>">
+                        <?= Html::img('@web/images/logo.png', ['alt' => 'Galin-A']) ?></a>
+                </div>
                 <div class="right-side float-none-sm">
                     <div id="menu" class="navbar-collapse collapse left-side" >
                         <ul class="nav navbar-nav navbar-left">

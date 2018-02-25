@@ -61,7 +61,7 @@ echo Breadcrumbs::widget(['links' => [
                                         'category_id',
                                         'name',
                                         'visible',
-                                        'url:url',
+                                        'top',
                                         'sort',
                                         'hit',
                                         'new',

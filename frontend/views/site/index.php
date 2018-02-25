@@ -95,7 +95,7 @@ use yii\helpers\Url;
                                     <?php if (!empty($new)): ?>
                                     <?php foreach ($new as $item): ?>
                                         <?php $lang_item = $item->getDataItems() ?>
-                                        <?php $price_item = $item->getPrice($item->id, $lang_item['lang_id'])?>
+                                        <?php $price_item = $item->getPrice($item->id)?>
                                         <div class="item">
                                             <div class="product-item">
                                                 <?php if ($item->sale == 1): ?>
@@ -124,14 +124,14 @@ use yii\helpers\Url;
                                                     </div>
                                                 </div>
                                                 <div class="product-item-details">
-                                                    <?php $currency = $item->getCurrName($price_item['currency_id']) ?>
+                                                    <?php  ?>
                                                     <div class="product-item-name">
                                                         <a href="<?= Url::to(['product/view', 'slug' => $item->slug])?>"><?= $lang_item['title'] ?></a>
                                                     </div>
-                                                    <div class="price-box"> <span class="price"><?= $currency ?> <?= $price_item['price'] ?></span>
+                                                    <div class="price-box"> <span class="price"><?= $currency->sign?> <?= $price_item['price'] ?></span>
 
                                                 <?php if (!empty($price_item['oldPrice']) && $price_item['price'] < $price_item['oldPrice']){ ?>
-                                                        <del class="price old-price"><?= $currency ?> <?= $price_item['oldPrice']?></del>
+                                                        <del class="price old-price"><?= $currency->sign ?> <?= $price_item['oldPrice']?></del>
                                                 <?}?>
                                                     </div>
 
@@ -174,7 +174,7 @@ use yii\helpers\Url;
                                     <?php if (!empty($hits)): ?>
                                     <?php foreach ($hits as $hit): ?>
                                     <?php $lang_hit = $hit->getDataItems() ?>
-                                    <?php $price_hit = $hit->getPrice($hit->id, $lang_hit['lang_id'])?>
+                                    <?php $price_hit = $hit->getPrice($hit->id)?>
                                     <div class="item">
                                         <div class="product-item">
                                             <?php if ($hit->sale == 1): ?>
@@ -183,7 +183,11 @@ use yii\helpers\Url;
                                             <?php if ($hit->new == 1):?>
                                             <div class="new-label"><span>New</span></div>
                                             <?php endif;?>
-                                            <div class="product-image"> <a href="<?= Url::to(['product/view', 'slug' => $hit->slug])?>"> <img src="/frontend/web/images/b.jpg" alt=""> </a>
+                                            <div class="product-image"> <a href="<?= Url::to(['product/view', 'slug' => $hit->slug])?>">
+                                                    <img src="/frontend/web/images/b.jpg" alt="">
+
+                                                </a>
+                                            </div>
                                                 <div class="product-detail-inner">
                                                     <div class="detail-inner-left ">
                                                         <ul>
@@ -200,14 +204,13 @@ use yii\helpers\Url;
                                                 </div>
                                             </div>
                                             <div class="product-item-details">
-                                                <?php $currency = $hit->getCurrName($price_hit['currency_id']) ?>
                                                 <div class="product-item-name">
                                                     <a href="<?= Url::to(['product/view', 'slug' => $hit->slug])?>"><?= $lang_hit['title'] ?></a>
                                                 </div>
-                                                <div class="price-box"> <span class="price"><?= $currency ?> <?= $price_hit['price'] ?></span>
+                                                <div class="price-box"> <span class="price"><?= $currency->sign ?> <?= $price_hit['price'] ?></span>
 
                                                     <?php if (!empty($price_hit['oldPrice']) && $price_hit['price'] < $price_hit['oldPrice']): ?>
-                                                    <del class="price old-price"><?= $currency ?> <?= $price_hit['oldPrice']?></del>
+                                                    <del class="price old-price"><?= $currency->sign ?> <?= $price_hit['oldPrice']?></del>
                                                     <?php endif; ?>
                                                 </div>
 
@@ -249,7 +252,7 @@ use yii\helpers\Url;
                                 <?php if (!empty($sales)): ?>
                                 <?php foreach ($sales as $sale): ?>
                                 <?php $lang_sale = $sale->getDataItems() ?>
-                                    <?php $price_sale = $sale->getPrice($sale->id, $lang_sale['lang_id'])?>
+                                    <?php $price_sale = $sale->getPrice($sale->id)?>
                                 <li>
                                     <div class="pro-media">
                                         <a href="<?= Url::to(['product/view', 'slug' => $sale->slug]) ?>">
@@ -260,8 +263,7 @@ use yii\helpers\Url;
                                         <!-- <div class="rating-summary-block">
                                             <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
                                         </div> -->
-                                        <?php $currency = $sale->getCurrName($price_sale['currency_id']) ?>
-                                        <div class="price-box"> <span class="price"><?= $currency ?> <?= $price_sale['price'] ?></span> </div>
+                                        <div class="price-box"> <span class="price"><?= $currency->sign ?> <?= $price_sale['price'] ?></span> </div>
                                         <div class="cart-link">
                                             <form>
                                                 <button title="Add to Cart">Add To Cart</button>

@@ -19,7 +19,7 @@ class LangSearch extends Lang
     {
         return [
             [['id', 'default', 'date_update', 'date_create'], 'integer'],
-            [['url', 'local', 'name'], 'safe'],
+            [['url', 'local', 'name', 'img'], 'safe'],
         ];
     }
 
@@ -67,7 +67,8 @@ class LangSearch extends Lang
 
         $query->andFilterWhere(['like', 'url', $this->url])
             ->andFilterWhere(['like', 'local', $this->local])
-            ->andFilterWhere(['like', 'name', $this->name]);
+            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'img', $this->img]);
 
         return $dataProvider;
     }

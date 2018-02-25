@@ -252,6 +252,7 @@ h6 {
 	background: #222;
 	border: none;
 }
+
 .btn-black:hover {
 	color: #fff;
 	background: #349fe2;
@@ -273,6 +274,11 @@ h6 {
 .btn-white:hover {
 	color: #222;
 	background: #349fe2;
+}
+.btn-buy {
+	color: #e3556e;
+	background: #940000;
+	border: none;
 }
 /* - Form Style */ 
 select {
@@ -1632,7 +1638,7 @@ _______________________________________________________*/
 
 
 .perellex-banner {
-    background: url("../images/perellex.jpg") no-repeat fixed 0 0;
+    background: url("/frontend/web/images/perellex.jpg") no-repeat fixed 0 0;
 }
 
 .perellex-bg {

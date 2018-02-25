@@ -11,6 +11,7 @@ namespace frontend\controllers;
 
 use common\models\Category;
 use common\models\Products;
+use common\models\Currency;
 use common\models\Pages;
 use yii\web\Controller;
 
@@ -34,6 +35,10 @@ class CategoryController extends AppController
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 12, 'forcePageParam' => false, 'pageSizeParam' => false] );
 
         $products = $query->offset($pages->offset)->limit($pages->limit)->all();
+
+        $tops = Products::find()->where(['top' => 1])->limit(3)->all();
+
+        $currency = Currency::find()->where(['default' => 1])->one();
 
 
 //        $page = Pages::find()->where(['slug' => 'category'])->one();
@@ -72,6 +77,6 @@ class CategoryController extends AppController
         }
 
 
-        return $this->render('view', compact('category', 'products', 'pages'));
+        return $this->render('view', compact('category', 'products', 'pages', 'tops', 'currency'));
     }
 }

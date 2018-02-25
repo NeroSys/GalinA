@@ -18,7 +18,7 @@ class ProductsPriceSearch extends ProductsPrice
     public function rules()
     {
         return [
-            [['id', 'item_id', 'currency_id', 'lang_id'], 'integer'],
+            [['id', 'item_id', 'currency_id'], 'integer'],
             [['price', 'oldPrice'], 'number'],
         ];
     }
@@ -62,7 +62,6 @@ class ProductsPriceSearch extends ProductsPrice
             'id' => $this->id,
             'item_id' => $this->item_id,
             'currency_id' => $this->currency_id,
-            'lang_id' => $this->lang_id,
             'price' => $this->price,
             'oldPrice' => $this->oldPrice
         ]);

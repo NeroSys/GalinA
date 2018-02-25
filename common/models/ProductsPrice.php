@@ -11,7 +11,6 @@ use yii\helpers\ArrayHelper;
  * @property int $id
  * @property int $item_id
  * @property int $currency_id
- * @property int $lang_id
  * @property float $price
  * @property float $oldPrice
  * @property Currency $currency
@@ -33,10 +32,9 @@ class ProductsPrice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item_id', 'currency_id', 'lang_id'], 'integer'],
+            [['item_id', 'currency_id'], 'integer'],
             [['price', 'oldPrice'], 'integer'],
             [['currency_id'], 'exist', 'skipOnError' => true, 'targetClass' => Currency::className(), 'targetAttribute' => ['currency_id' => 'id']],
-            [['lang_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lang::className(), 'targetAttribute' => ['lang_id' => 'id']],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['item_id' => 'id']],
         ];
     }
@@ -50,7 +48,6 @@ class ProductsPrice extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'item_id' => Yii::t('app', 'Товар'),
             'currency_id' => Yii::t('app', 'Валюта'),
-            'lang_id' => Yii::t('app', 'Языковая версия сайта'),
             'price' => Yii::t('app', 'Цена'),
             'oldPrice' => Yii::t('app', 'Старая цена'),
         ];
@@ -72,15 +69,5 @@ class ProductsPrice extends \yii\db\ActiveRecord
         return $this->hasOne(Products::className(), ['id' => 'item_id']);
     }
 
-    public function getLangList($item_id){
 
-        return ArrayHelper::getColumn(self::find()->select('lang_id')->distinct('lang_id')->where(['item_id' => $item_id])->all(), 'lang_id');
-
-    }
-
-    public function getArray($item_id){
-
-
-        return ArrayHelper::map(Lang::find()->where(['NOT IN', 'id', $this->getLangList($item_id)])->all(), 'id', 'name');
-    }
 }

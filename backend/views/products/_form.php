@@ -46,6 +46,8 @@ use common\models\Currency;
 
                 <?= $form->field($model, 'hit')->checkbox() ?>
 
+                <?= $form->field($model, 'top')->checkbox() ?>
+
                 <?php if (!$model->isNewRecord): ?>
 
                     <?= $form->field($model, 'new')->checkbox() ?>

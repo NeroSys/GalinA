@@ -17,8 +17,6 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'lang_id')->dropDownList($model->getArray($item_id))->label('Языковая версия сайта') ?>
-
     <?= $form->field($model, 'currency_id')->dropDownList(  ArrayHelper::map(Currency::find()->asArray()->all(),'id', 'name'),
         ['prompt' => 'Выберите валюту']) ?>
 

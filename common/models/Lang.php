@@ -13,6 +13,7 @@ use yii\db\ActiveRecord;
  * @property string $local
  * @property string $name
  * @property int $default
+ * @property string $img
  * @property int $date_update
  * @property int $date_create
  */
@@ -48,7 +49,7 @@ class Lang extends \yii\db\ActiveRecord
         return [
             [['url', 'local', 'name'], 'required'],
             [['default', 'date_update', 'date_create'], 'integer'],
-            [['url', 'local', 'name'], 'string', 'max' => 255],
+            [['url', 'local', 'name', 'img'], 'string', 'max' => 255],
         ];
     }
 
@@ -63,6 +64,7 @@ class Lang extends \yii\db\ActiveRecord
             'local' => 'Local',
             'name' => 'Name',
             'default' => 'Default',
+            'img' => 'Image',
             'date_update' => 'Date Update',
             'date_create' => 'Date Create',
         ];

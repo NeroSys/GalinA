@@ -14,7 +14,7 @@ use Yii;
  * @property string $previewImg
  * @property string $img
  * @property int $visible
- * @property string $url
+ * @property int $top
  * @property int $sort
  * @property int $hit
  * @property int $new
@@ -60,7 +60,7 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'visible', 'sort', 'hit', 'new', 'sale'], 'integer'],
+            [['category_id', 'visible', 'sort', 'hit', 'new', 'sale', 'top'], 'integer'],
             [[
                 'title',
                 'description',
@@ -79,7 +79,7 @@ class Products extends \yii\db\ActiveRecord
 
             ], 'safe'],
             [['date'], 'safe'],
-            [['name', 'slug', 'previewImg', 'img', 'url'], 'string', 'max' => 255],
+            [['name', 'slug', 'previewImg', 'img'], 'string', 'max' => 255],
         ];
     }
 
@@ -96,7 +96,7 @@ class Products extends \yii\db\ActiveRecord
             'previewImg' => Yii::t('app', 'Превью'),
             'img' => Yii::t('app', 'Изображение'),
             'visible' => Yii::t('app', 'Отображение'),
-            'url' => Yii::t('app', 'Url'),
+            'top' => Yii::t('app', 'Бестселлер'),
             'sort' => Yii::t('app', 'Сортировка вывода'),
             'hit' => Yii::t('app', 'Хит'),
             'new' => Yii::t('app', 'Новинка'),
@@ -174,6 +174,8 @@ class Products extends \yii\db\ActiveRecord
         if(!empty($this->price)){
             foreach ($this->price as $lang => $value){
 
+                var_dump($lang);die;
+
                 $key_id = key($value);
                 $lang1 = ProductsPrice::find()->where(['lang_id' => $lang])->andWhere(['id'=>$key_id])->one();
 
@@ -234,15 +236,15 @@ class Products extends \yii\db\ActiveRecord
 
             if(!empty($this->priceNew)) {
 
-                foreach ($this->priceNew as $lang_id => $price) {
+                foreach ($this->priceNew as $product_id => $price) {
+
 
                     $itemPrice = (is_array($price) ? array_pop($price) : '');
-                    $itemCurrency = (is_array($this->currencyNew) ? array_pop($this->currencyNew[$lang_id]) : '');
+                    $itemCurrency = (is_array($this->currencyNew) ? array_pop($this->currencyNew[$product_id]) : '');
 
                     $item = new ProductsPrice();
 
                     $item->item_id = $this->id;
-                    $item->lang_id = $lang_id;
 
                     $item->price = (!empty($itemPrice) ? $itemPrice : '');
                     $item->currency_id = (!empty($itemCurrency) ? $itemCurrency : '');
@@ -258,9 +260,11 @@ class Products extends \yii\db\ActiveRecord
         return ProductsLang::find()->where(['item_id' => $id])->andWhere(['lang_id' => $langId])->one();
     }
 
-    public static function getPrice($id, $langId){
+    public static function getPrice($id){
 
-        return ProductsPrice::find()->where(['item_id' => $id])->andWhere(['lang_id' => $langId])->one();
+        $current = Currency::find()->where(['default' => 1])->one();
+
+        return ProductsPrice::find()->where(['item_id' => $id])->andWhere(['currency_id' => $current->id])->one();
     }
 
 

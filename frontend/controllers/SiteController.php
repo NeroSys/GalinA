@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Currency;
 use common\models\Products;
 use common\models\Pages;
 
@@ -82,6 +83,8 @@ class SiteController extends AppController
 
         $sales = Products::find()->where(['sale' => 1])->limit(3)->all();
 
+        $currency = Currency::find()->where(['default' => 1])->one();
+
         $page = Pages::find()->where(['slug' => 'main'])->one();
 
         if (!empty($page)){
@@ -117,7 +120,7 @@ class SiteController extends AppController
             $this->setMeta('Galin-A | Магия крестиков');
         }
 
-        return $this->render('index', compact('hits', 'new', 'sales'));
+        return $this->render('index', compact('hits', 'new', 'sales', 'currency'));
     }
 
     /**
